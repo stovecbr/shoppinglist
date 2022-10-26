@@ -1,11 +1,23 @@
 import './App.css';
 // import ShoppingList from './components/ShoppingList';
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 
 const App = () => {
 
   // const[items,setItems]= useState([]);
-  
+  const[count,setCount]=useState(0);
+
+  const handleClickDown =()=>{
+    const newCount = count-1;
+    setCount(newCount);
+  };
+
+  const handleClickUp =()=>{
+    const newCount = count+1;
+    setCount(newCount);
+  };
+
+
   return (
     <div className="App">
       {/* <ShoppingList items={items} /> */}
@@ -18,9 +30,9 @@ const App = () => {
         
           <input type="checkbox"></input>       
             item1  
-          <button >＜</button>
-            1個
-          <button >＞</button>
+          <button onClick={handleClickDown}>＜</button>
+            {count}
+          <button onClick={handleClickUp}>＞</button>
        
         
       </div>
