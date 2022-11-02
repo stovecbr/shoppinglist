@@ -7,7 +7,7 @@ const App = () => {
   // 値の入力用ステート
   const[input,setInput] = useState(""); 
   
-  const[color,setColor] = useState("black");
+  // const[color,setColor] = useState("black");
 
   // アイテム格納用ステート　オブジェクトの配列
   const [items, setItems] = useState([
@@ -38,13 +38,12 @@ const App = () => {
        newCount[index].quantity--;
 
        if(newCount[index].quantity<0){      
-        setColor("red");
+        newCount[index].quantity=0;
+        setItems(newCount);
+       }else{
         setItems(newCount);
        }
-       else{
-        setColor("black");
-        setItems(newCount);
-      }
+      
        
    };
 
@@ -54,14 +53,9 @@ const App = () => {
     const newCount = [...items];
   // newCount[index].quantity = newCount[index].quantity+1;
    newCount[index].quantity++; 
-   if(newCount[index].quantity<0){      
-    setColor("red");
+  
     setItems(newCount);
-   }
-   else{
-    setColor("black");
-    setItems(newCount);
-  }
+  
   };
 
 
@@ -123,8 +117,9 @@ const App = () => {
                   {/* <button >＜</button> */}
 
                     {/* 個数を表示 */}
-                   <span className={`${color}` } >{item.quantity}</span>
-                  
+                   
+                   {item.quantity}
+
                   <button onClick={()=>handleClickUp(index)}>＞</button>
                   {/* <button >＞</button> */}
                 </li>
