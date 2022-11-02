@@ -18,8 +18,6 @@ const App = () => {
     {itemName:"item 4", quantity: 3},
    ]);
 
-
-  // const[shoppingList,setShoppingList] = useState([""]);
   
   // ＜ボタンクリック
   // const handleClickDown =()=>{
@@ -33,18 +31,27 @@ const App = () => {
   //   setCount(newCount);
   // };
 
-  // ＋ボタンクリック
+ // ＜ボタンクリックで-1する
+    const handleClickDown =(index)=>{
+       const newCount = [...items];
+    //  newCount[index].quantity = newCount[index].quantity-1;
+       newCount[index].quantity--;
+       setItems(newCount);
+   };
 
-   
-  // const onCLickAdd = () =>{
-  //   if (items === "") return;
-  //   const newItems = [...shoppingList,items];
-  //   setShoppingList(newItems);
-  //   setItems("");
-  // }
 
- 
-  
+  // ＞ボタンクリックで+1する
+  const handleClickUp =(index)=>{
+    const newCount = [...items];
+  // newCount[index].quantity = newCount[index].quantity+1;
+  newCount[index].quantity++;
+    setItems(newCount);
+  };
+
+
+
+// ＋ボタンクリック
+
 // アイテム追加
   const onCLickAdd = () =>{
     if (input === "") return;
@@ -60,7 +67,6 @@ const App = () => {
 
   // 入力した値を反映する
   const onChangeItems = (event) =>setInput(event.target.value);
-
 
   return (
     <div className="App">
@@ -94,14 +100,14 @@ const App = () => {
                   {/* アイテム名を表示 */}
                     {item.itemName}
                     
-                  {/* <button onClick={handleClickDown} >＜</button> */}
-                  <button >＜</button>
+                  <button onClick={()=>handleClickDown(index)} >＜</button>
+                  {/* <button >＜</button> */}
 
                     {/* 個数を表示 */}
                     {item.quantity}
                  
-                  {/* <button onClick={handleClickUp}>＞</button> */}
-                  <button >＞</button>
+                  <button onClick={()=>handleClickUp(index)}>＞</button>
+                  {/* <button >＞</button> */}
                 </li>
               
             </div>
