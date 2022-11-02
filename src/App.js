@@ -7,7 +7,7 @@ const App = () => {
   // 値の入力用ステート
   const[input,setInput] = useState(""); 
   
-  // const[count,setCount] = useState(0);
+  const[color,setColor] = useState("black");
 
   // アイテム格納用ステート　オブジェクトの配列
   const [items, setItems] = useState([
@@ -36,7 +36,16 @@ const App = () => {
        const newCount = [...items];
     //  newCount[index].quantity = newCount[index].quantity-1;
        newCount[index].quantity--;
-       setItems(newCount);
+
+       if(newCount[index].quantity<0){      
+        setColor("red");
+        setItems(newCount);
+       }
+       else{
+        setColor("black");
+        setItems(newCount);
+      }
+       
    };
 
 
@@ -44,10 +53,16 @@ const App = () => {
   const handleClickUp =(index)=>{
     const newCount = [...items];
   // newCount[index].quantity = newCount[index].quantity+1;
-  newCount[index].quantity++;
+   newCount[index].quantity++; 
+   if(newCount[index].quantity<0){      
+    setColor("red");
     setItems(newCount);
+   }
+   else{
+    setColor("black");
+    setItems(newCount);
+  }
   };
-
 
 
 // ＋ボタンクリック
@@ -67,6 +82,10 @@ const App = () => {
 
   // 入力した値を反映する
   const onChangeItems = (event) =>setInput(event.target.value);
+
+  // const changeColor = (event) =>setItems(event.target.value);
+
+  
 
   return (
     <div className="App">
@@ -95,17 +114,17 @@ const App = () => {
             
             <div key={index} className="list-row">
               
-                <li>
+                <li >
                   <input type="checkbox" ></input>
                   {/* アイテム名を表示 */}
                     {item.itemName}
                     
-                  <button onClick={()=>handleClickDown(index)} >＜</button>
+                  <button  onClick={()=>handleClickDown(index) } >＜</button>
                   {/* <button >＜</button> */}
 
                     {/* 個数を表示 */}
-                    {item.quantity}
-                 
+                   <span className={`${color}` } >{item.quantity}</span>
+                  
                   <button onClick={()=>handleClickUp(index)}>＞</button>
                   {/* <button >＞</button> */}
                 </li>

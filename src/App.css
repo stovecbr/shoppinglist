@@ -1,14 +1,26 @@
 
 
-/* .list-row{
-  display: flex;
-} */
+.ul{
+  display:flex;
+}
 
 /* .checkbox{
   
   border-radius: 50%;
 } */
 
-ul{
+/* ul{
   list-style-type: none;
+} */
+
+.red{
+  color:red;
+}
+
+.black{
+  color:black
+}
+
+.blue{
+  color:blue
 }
