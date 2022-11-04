@@ -1,6 +1,6 @@
 import './App.css';
 // import ShoppingList from './components/ShoppingList';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const App = () => {
 
@@ -18,18 +18,9 @@ const App = () => {
     {itemName:"item 4", quantity: 3},
    ]);
 
-  
-  // ＜ボタンクリック
-  // const handleClickDown =()=>{
-  
-  //   const newCount = count-1;
-  //   setCount(newCount);
-  // };
-  // ＞ボタンクリック
-  // const handleClickUp =()=>{
-  //   const newCount = count+1;
-  //   setCount(newCount);
-  // };
+  //  合計の計算用ステート
+   const[total,setTotal] = useState(0); 
+
 
  // ＜ボタンクリックで-1する
     const handleClickDown =(index)=>{
@@ -43,8 +34,6 @@ const App = () => {
        }else{
         setItems(newCount);
        }
-      
-       
    };
 
 
@@ -52,15 +41,13 @@ const App = () => {
   const handleClickUp =(index)=>{
     const newCount = [...items];
   // newCount[index].quantity = newCount[index].quantity+1;
-   newCount[index].quantity++; 
+    newCount[index].quantity++; 
   
     setItems(newCount);
-  
   };
 
 
 // ＋ボタンクリック
-
 // アイテム追加
   const onCLickAdd = () =>{
     if (input === "") return;
@@ -72,6 +59,7 @@ const App = () => {
     setItems(newItems);
     // 入力欄を空にする
     setInput("");
+    
   }
 
   // 入力した値を反映する
@@ -79,12 +67,22 @@ const App = () => {
 
   // const changeColor = (event) =>setItems(event.target.value);
 
-  
+
+  // 合計の計算
+  const totalQuantity = () =>{
+    let currentTotal = 0;
+    items.map((item)=>{
+      currentTotal = currentTotal + item.quantity;
+    });
+    setTotal(currentTotal);
+  }
+
+useEffect(() =>{
+  totalQuantity();
+},[items]);
 
   return (
     <div className="App">
-      {/* <ShoppingList items={items} /> */}
-
 
       <div className='input-area'>
 
@@ -122,15 +120,23 @@ const App = () => {
 
                   <button onClick={()=>handleClickUp(index)}>＞</button>
                   {/* <button >＞</button> */}
+
+                
                 </li>
-              
+                       
             </div>
-            
           );
         })}
 
       </ul>
-        
+        <ul>
+          <div className='total'>
+         <li>
+          total:{total}
+          {/* <button>calculate</button> */}
+         </li>
+         </div>
+        </ul>
       </div>
 
     </div>

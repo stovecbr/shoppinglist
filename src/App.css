@@ -9,9 +9,9 @@
   border-radius: 50%;
 } */
 
-/* ul{
+ul{
   list-style-type: none;
-} */
+}
 
 .red{
   color:red;
@@ -24,3 +24,7 @@
 .blue{
   color:blue
 }
+
+/* .total{
+  text-align: right;
+} */
