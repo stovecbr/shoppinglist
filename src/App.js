@@ -1,6 +1,7 @@
 import './App.css';
 // import ShoppingList from './components/ShoppingList';
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const App = () => {
 
@@ -19,7 +20,7 @@ const App = () => {
    ]);
 
   //  合計の計算用ステート
-   const[total,setTotal] = useState(0); 
+  //  const[total,setTotal] = useState(0); 
 
 
  // ＜ボタンクリックで-1する
@@ -42,8 +43,7 @@ const App = () => {
     const newCount = [...items];
   // newCount[index].quantity = newCount[index].quantity+1;
     newCount[index].quantity++; 
-  
-    setItems(newCount);
+      setItems(newCount);
   };
 
 
@@ -69,17 +69,21 @@ const App = () => {
 
 
   // 合計の計算
-  const totalQuantity = () =>{
-    let currentTotal = 0;
-    items.map((item)=>{
-      currentTotal = currentTotal + item.quantity;
-    });
-    setTotal(currentTotal);
-  }
+//   const totalQuantity = () =>{
+//     let currentTotal = 0;
+//     items.map((item)=>{
+//       currentTotal = currentTotal + item.quantity;
+//     });
+//     setTotal(currentTotal);
+//   }
 
-useEffect(() =>{
-  totalQuantity();
-},[items]);
+// useEffect(() =>{
+//   totalQuantity();
+// },[items]);
+
+const total = items.reduce((previousValue,currentValue) => previousValue + currentValue.quantity, 0,);
+
+ 
 
   return (
     <div className="App">
@@ -133,7 +137,6 @@ useEffect(() =>{
           <div className='total'>
          <li>
           total:{total}
-          {/* <button>calculate</button> */}
          </li>
          </div>
         </ul>
