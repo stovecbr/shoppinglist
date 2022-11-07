@@ -83,6 +83,24 @@ const App = () => {
 
 const total = items.reduce((previousValue,currentValue) => previousValue + currentValue.quantity, 0,);
 
+
+// 完了済みアイテム
+
+// リストから消す
+// const deleteItems = (index) => {
+//   const deleteItem = [...items];
+//   deleteItem.splice(index,1);
+//   setItems(deleteItem)
+// };
+
+// 取り消し線をつける
+const deleteItems = (index) => {
+  const deleteItem = [...items];
+  deleteItem[index].isSelected = !deleteItem[index].isSelected;
+  setItems(deleteItem);
+};
+
+
  
 
   return (
@@ -111,15 +129,31 @@ const total = items.reduce((previousValue,currentValue) => previousValue + curre
             <div key={index} className="list-row">
               
                 <li >
-                  <input type="checkbox" ></input>
+                  {/* <input  type="checkbox" ></input> */}
+
+                  {/* リストから消す */}
+                  {/* <input  type="checkbox" onClick={()=>deleteItems(index)}></input> */}
+
+                  {/* 取り消し線をつける */}
+                  <input  type="checkbox" onClick={()=>deleteItems(index)}></input>
+                  {item.isSelected ? (
+                    <>
+                      <del>{item.itemName}</del>
+                    </>
+                  ) : (
+                    <>
+                      {item.itemName}
+                    </>
+                  )}
+
                   {/* アイテム名を表示 */}
-                    {item.itemName}
+                    {/* <del>{item.itemName}</del> */}
+                    {/* {item.itemName} */}
                     
                   <button  onClick={()=>handleClickDown(index) } >＜</button>
                   {/* <button >＜</button> */}
 
-                    {/* 個数を表示 */}
-                   
+                  {/* 個数を表示 */}                   
                    {item.quantity}
 
                   <button onClick={()=>handleClickUp(index)}>＞</button>
