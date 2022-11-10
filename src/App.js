@@ -22,7 +22,6 @@ const App = () => {
   //  合計の計算用ステート
   //  const[total,setTotal] = useState(0); 
 
-
  // ＜ボタンクリックで-1する
     const handleClickDown =(index)=>{
        const newCount = [...items];
@@ -37,7 +36,6 @@ const App = () => {
        }
    };
 
-
   // ＞ボタンクリックで+1する
   const handleClickUp =(index)=>{
     const newCount = [...items];
@@ -45,7 +43,6 @@ const App = () => {
     newCount[index].quantity++; 
       setItems(newCount);
   };
-
 
 // ＋ボタンクリック
 // アイテム追加
@@ -58,8 +55,7 @@ const App = () => {
     // ショッピングリストを更新
     setItems(newItems);
     // 入力欄を空にする
-    setInput("");
-    
+    setInput("");    
   }
 
   // 入力した値を反映する
@@ -76,13 +72,11 @@ const App = () => {
 //     });
 //     setTotal(currentTotal);
 //   }
-
 // useEffect(() =>{
 //   totalQuantity();
 // },[items]);
 
 const total = items.reduce((previousValue,currentValue) => previousValue + currentValue.quantity, 0,);
-
 
 // 完了済みアイテム
 
@@ -100,9 +94,6 @@ const deleteItems = (index) => {
   setItems(deleteItem);
 };
 
-
- 
-
   return (
     <div className="App">
 
@@ -116,7 +107,7 @@ const deleteItems = (index) => {
         ></input>
 
       {/* ＋ボタンでアイテム追加 */}
-        <button onClick={onCLickAdd} >+</button> 
+        <button className='button-plus' onClick={onCLickAdd} >+</button> 
         
       </div>
       
@@ -129,16 +120,20 @@ const deleteItems = (index) => {
             <div key={index} className="list-row">
               
                 <li >
-                  {/* <input  type="checkbox" ></input> */}
-
                   {/* リストから消す */}
                   {/* <input  type="checkbox" onClick={()=>deleteItems(index)}></input> */}
 
-                  {/* 取り消し線をつける */}
-                  <input  type="checkbox" onClick={()=>deleteItems(index)}></input>
-                  {item.isSelected ? (
+                  {/* 取り消し線をつける */}                  
+                  {/* 擬似的にチェックボックス作成してチェックボックスを丸くする */}
+                  <label className='deco-check'>
+                    <input  className='checkbox' type="checkbox" onClick={()=>deleteItems(index)}></input>
+                    <span className='dummy'></span>
+                    
+                  {/* アイテム名を表示 */}
+                  <div className='itemName'>
+                  {item.isSelected ? (                    
                     <>
-                      <del>{item.itemName}</del>
+                      <del>{item.itemName}</del>                      
                     </>
                   ) : (
                     <>
@@ -146,20 +141,21 @@ const deleteItems = (index) => {
                     </>
                   )}
 
-                  {/* アイテム名を表示 */}
-                    {/* <del>{item.itemName}</del> */}
-                    {/* {item.itemName} */}
-                    
-                  <button  onClick={()=>handleClickDown(index) } >＜</button>
+                  </div>
+
+                  <div className='button-quantity'>
+                  <button  className='button-left' onClick={()=>handleClickDown(index) } >＜</button>
                   {/* <button >＜</button> */}
 
-                  {/* 個数を表示 */}                   
+                  {/* 個数を表示 */}
+                  <div className='quantity'>                   
                    {item.quantity}
+                  </div>
 
-                  <button onClick={()=>handleClickUp(index)}>＞</button>
-                  {/* <button >＞</button> */}
-
-                
+                  <button className='button-right' onClick={()=>handleClickUp(index)}>＞</button>
+                 
+                  </div>
+                  </label>
                 </li>
                        
             </div>
@@ -170,7 +166,7 @@ const deleteItems = (index) => {
         <ul>
           <div className='total'>
          <li>
-          total:{total}
+          Total:{total}
          </li>
          </div>
         </ul>
