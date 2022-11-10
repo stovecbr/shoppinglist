@@ -113,21 +113,21 @@ ul{
   vertical-align: text-top;
   background-color: white;
 }
-.deco-check input:checked+.dummy::after {
+/* .deco-check input:checked+.dummy::after {
   content: '';
   width: 80%;
   height: 40%;
   border-left: 2px solid rgb(248, 118, 139);
   border-bottom: 2px solid rgb(248, 118, 139);
   transform: rotate(-45deg);
-}
+} */
 
-/* .deco-check input:checked+.dummy::after {
+.deco-check input:checked+.dummy::after {
   content: '済';
   font-size: small;
   color: blue;
   width: 150%;  
- } */
+ }
 
 .itemName{
   margin: 5px;
