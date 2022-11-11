@@ -19,7 +19,7 @@
   background-color:rgb(246, 228, 231);
   border-style:hidden;
   height: 30px;
-  width: 230px;
+  width: 240px;
   margin-right: 0px;
   border: 0px;
   padding: 0px;
@@ -113,21 +113,21 @@ ul{
   vertical-align: text-top;
   background-color: white;
 }
-/* .deco-check input:checked+.dummy::after {
+.deco-check input:checked+.dummy::after {
   content: '';
   width: 80%;
   height: 40%;
   border-left: 2px solid rgb(248, 118, 139);
   border-bottom: 2px solid rgb(248, 118, 139);
   transform: rotate(-45deg);
-} */
+}
 
-.deco-check input:checked+.dummy::after {
+/* .deco-check input:checked+.dummy::after {
   content: '済';
   font-size: small;
   color: blue;
   width: 150%;  
- }
+ } */
 
 .itemName{
   margin: 5px;
